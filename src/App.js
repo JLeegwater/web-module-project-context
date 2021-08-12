@@ -1,4 +1,4 @@
-import React, { useState, useReducer, createContext, useContext } from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import data from "./data";
 
@@ -20,16 +20,16 @@ function App() {
 
   return (
     <div className="App">
-      <ProductContext.Provider value={{ products, addItem }}>
-        <Navigation />
-
-        <Route exact path="/">
-          <Products />
-        </Route>
-
+      <ProductContext.Provider value={{ products, addItem, cart }}>
         <CartContext.Provider value={{ cart }}>
+          <Navigation />
+
+          <Route exact path="/">
+            <Products />
+          </Route>
+
           <Route path="/cart">
-            <ShoppingCart cart={cart} />
+            <ShoppingCart />
           </Route>
         </CartContext.Provider>
       </ProductContext.Provider>
